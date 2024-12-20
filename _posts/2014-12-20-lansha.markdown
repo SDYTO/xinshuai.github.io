@@ -1,0 +1,113 @@
+---
+layout:     post
+title:      "Redhat创建bond？"
+date:       2014-12-20 12:00:00
+author:     "text"
+header-img: "img/post-bg-miui6.jpg"
+tags:
+    - linux
+    - bond
+    - UX/UI
+---
+
+Redhat创建bond
+DEVICE=bond0
+ONBOOT=yes
+BOOTPROTO=static
+TYPE=Ethernet
+IPADDR=192.168.5.50
+NETMASK=255.255.255.0
+PREFIX=24
+GATEWAY=192.168.5.2
+DNS1=192.168.5.2
+DEFROUTE=yes
+
+2、vim /etc/sysconfig/network-scripts/ifcfg-eth0
+DEVICE=eth0
+ONBOOT=yes
+BOOTPROTO=none
+MASTER=bond0
+SLAVE=yes
+USERCTL=no
+
+3、vim /etc/sysconfig/network-scripts/ifcfg-eth1
+DEVICE=eth1
+ONBOOT=yes
+BOOTPROTO=none
+MASTER=bond0
+SLAVE=yes
+USERCTL=no
+
+加载bond模块
+4、vim /etc/modprobe.d/dist.conf
+alias bond0 bonding
+options bond0 mode=0 miimon=100 
+# mode 0表示为负载均衡模式,两块网卡都工作
+# mode 1表示冗余模式,一块是工作,一块冗余
+# miimon表示系统检查间隔时间,单位是ms,
+# 例如:每100ms检查一次,当发现一条线路不通,就转入另一条
+
+5、设置bond0开机自启
+vim /etc/rc.local
+ifenslave bond0 eth0 eth1
+----------------------------------------------------------
+ # grep bond0 /etc/modprobe.conf
+alias bond0 bonding
+
+# cat /etc/sysconfig/network-scripts/ifcfg-eth1
+DEVICE=eth1
+BOOTPROTO=none
+ONBOOT=yes
+MASTER=bond0
+SLAVE=yes
+
+# cat /etc/sysconfig/network-scripts/ifcfg-eth2
+DEVICE=eth2
+BOOTPROTO=none
+ONBOOT=yes
+MASTER=bond0
+SLAVE=yes
+
+# cat /etc/sysconfig/network-scripts/ifcfg-bond0
+DEVICE=bond0
+BOOTPROTO=dhcp
+ONBOOT=yes
+BONDING_OPTS="mode=4 miimon=100 lacp_rate=1"
+启动bond0
+# ifup bond0
+
+[root@lmsin ~]# cat /proc/net/bonding/bond1
+Ethernet Channel Bonding Driver: v3.6.0 (September 26, 2009)
+
+Bonding Mode: load balancing (round-robin)
+MII Status: up
+MII Polling Interval (ms): 100
+Up Delay (ms): 0
+Down Delay (ms): 0
+
+Slave Interface: eth2
+MII Status: up
+Speed: 1000 Mbps
+Duplex: full
+Link Failure Count: 0
+Permanent HW addr: 08:00:27:80:bd:0a
+Slave queue ID: 0
+
+Slave Interface: eth3
+MII Status: up
+Speed: 1000 Mbps
+Duplex: full
+Link Failure Count: 0
+Permanent HW addr: 08:00:27:0c:b8:a7
+Slave queue ID: 0
+redhat5  
+
+
+那mode值改下。。mode 1、5、6不需要交换机设置
+mode 0、2、3需要交换机设置静态聚合，mode 4需要交换机支持802.3ad  
+
+不客气，，弄完查看下。。/etc/modprobe.conf 这里面也可以加，alias bond0 bonding
+
+options bond0 miimon=100 mode=1  配置完service network restart 一下。。  
+
+echo "ifenslave bond0 eth0 eth1">> /etc/rc.d/rc.local 这个在配置好bond0后也可以加进去。。应该就这些了。。  
