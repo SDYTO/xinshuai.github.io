@@ -1,0 +1,176 @@
+---
+layout:     post
+title:      "操作代码？"
+date:       2024-12-20 12:00:00
+author:     "opcode"
+header-img: "img/post-bg-miui6.jpg"
+tags:
+    - opcode
+    - code
+    - UX/UI
+---
+操作代码
+//交叉带基础信息报文操作码
+public static final int OP_CODE CROESS BLET = 8001;
+//供包台操作量报文操作码
+public static final int OP_CODE INDUCTION = 892;
+//落格数据统计报文操作码
+public static final int OP_CODE_CHUTE = 8003;
+//异常口明细报文操作码
+public static final int OP CODE EXCEPTION FALLING = 8004;
+//格口同步报文操作码
+public static final int OP CODE LATTICE SYNC = 805;//操作台基础信息上报操作码
+public static final int OP_CODE OPERATION TABLE SYNC = 8006;
+//操作台状态信息同步报文操作码
+public static final int OP_CODE OPERATION TABLE STATUS SYNC = 8007;
+//操作台校验
+public static final int OP_CODE_OPERATION_TABLE_CHECK = 808;
+//圆智大屏
+public static final int OP CODE BIG SCREEN = 8009;
+//0SD信息上报
+public static final int OP CODE OSD UPLOAD = 801:
+//交叉带锁格事件上报
+public static final int OP_CODE_LOCKLATTICE_EVENT= 8011;
+//交叉带解锁事件上报
+public static final int OP CODE UNLOCK LATTICE EVENT = 8012;
+//格口列表查询
+public static final int OP_CODE_LATTICEQUERY = 8103;
+//错分查询
+public static final int OP CODE WRONG SORT OUERY    8184;//错建包查询
+public static final int OP CODE WRONG BUILD PACK QUERY = 8105;
+
+static { params.put(Integer.valueOf(111), "装件入包");
+
+params.put(Integer.valueOf(121), "装件入笼");
+
+params.put(Integer.valueOf(131), "上车");
+
+params.put(Integer.valueOf(171), "下车");
+
+params.put(Integer.valueOf(181), "拆包");
+
+params.put(Integer.valueOf(310), "收入扫描");
+
+params.put(Integer.valueOf(710), "派件扫描");
+
+params.put(Integer.valueOf(740), "正常签收录入");
+
+params.put(Integer.valueOf(741), "失败签收录入");
+
+params.put(Integer.valueOf(350), "运单录入");
+
+params.put(Integer.valueOf(-1), "空操作");
+
+params.put(Integer.valueOf(1), "PDA登录");
+
+params.put(Integer.valueOf(110), "建包签");
+
+params.put(Integer.valueOf(112), "从包中删除,被抽件");
+
+params.put(Integer.valueOf(119), "封包");
+
+params.put(Integer.valueOf(120), "建笼签");
+
+params.put(Integer.valueOf(122), "从笼中删除,被抽件");
+
+params.put(Integer.valueOf(129), "封签");
+
+params.put(Integer.valueOf(130), "建车签");
+
+params.put(Integer.valueOf(132), "从车 中删除,被抽件");
+
+params.put(Integer.valueOf(139), "封车");
+
+params.put(Integer.valueOf(135), "建航空车签,发货");
+
+params.put(Integer.valueOf(136), "航空装件入车,发货上车");
+
+params.put(Integer.valueOf(140), "发车");
+
+params.put(Integer.valueOf(150), "留仓件入");
+
+params.put(Integer.valueOf(155), "留仓件出");
+
+params.put(Integer.valueOf(160), "到车");
+
+params.put(Integer.valueOf(170), "解封车");
+
+params.put(Integer.valueOf(172), "下车删除");
+
+params.put(Integer.valueOf(175), "航空解封车提货");
+
+params.put(Integer.valueOf(176), "航空下车,提货下车");
+
+params.put(Integer.valueOf(190), "解笼签");
+
+params.put(Integer.valueOf(191), "拆笼");
+
+params.put(Integer.valueOf(192), "拆笼删除");
+
+params.put(Integer.valueOf(180), "解包签");
+
+params.put(Integer.valueOf(182), "拆包删除");
+
+params.put(Integer.valueOf(185), "抽件扫描");
+
+params.put(Integer.valueOf(200), "问题件发布");
+
+params.put(Integer.valueOf(210), "问题件处理发出");
+
+params.put(Integer.valueOf(220), "通缉件发布");
+
+params.put(Integer.valueOf(221), "通缉件处理");
+
+params.put(Integer.valueOf(230), "航空部发出交接,容器(航空部->中心)");
+
+params.put(Integer.valueOf(231), "航空部发出交接,子件(航空部->中心)");
+
+params.put(Integer.valueOf(235), "航空部收入交接,容器(中心->航空部)");
+
+params.put(Integer.valueOf(236), "航空部收入交接,子件(中心->航空部)");
+
+params.put(Integer.valueOf(311), "PDA揽收");
+
+params.put(Integer.valueOf(320), "底单扫描");
+
+params.put(Integer.valueOf(330), "回单绑定");
+
+params.put(Integer.valueOf(331), "订单绑定");
+
+params.put(Integer.valueOf(340), "代取件扫描");
+
+params.put(Integer.valueOf(350), "录入底单");
+
+params.put(Integer.valueOf(360), "录入回单");
+
+params.put(Integer.valueOf(510), "次干线车地磅称重(自有车辆-计费-只整车)");
+
+params.put(Integer.valueOf(511), "主干线车地磅称重(自有车辆-不计费-只整车)");
+
+params.put(Integer.valueOf(512), "次干线车地磅称重(社会车辆-计费-需空车回磅)");
+
+params.put(Integer.valueOf(520), "中转国际件收入扫描");
+
+params.put(Integer.valueOf(521), "中转国际件收入扫描.子件");
+
+params.put(Integer.valueOf(910), "国际部出口件收入");
+
+params.put(Integer.valueOf(920), "国际部出口件发出");
+
+params.put(Integer.valueOf(930), "国际部进口揽收");
+
+params.put(Integer.valueOf(950), "航空安检扣件");
+
+params.put(Integer.valueOf(960), "海关扣件");
+
+params.put(Integer.valueOf(711), "PDA派件扫描");
+
+params.put(Integer.valueOf(720), "换单");
+
+params.put(Integer.valueOf(730), "回单核销");
+
+params.put(Integer.valueOf(745), "PDA正常签收");
+
+params.put(Integer.valueOf(746), "PDA失败签收");
+
+params.put(Integer.valueOf(750), "签单返回"); }
