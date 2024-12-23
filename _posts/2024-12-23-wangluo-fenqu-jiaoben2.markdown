@@ -10,7 +10,8 @@ tags:
     - 产品
 ---
 admin@huawei.com
-#==============安装weakea插件===========================
+
+## ==============安装weakea插件===========================
 
 <JBZHSL-S7706>load-module weakea 
 Info: Load weakea_V200R021C10SPC600.mod from the startup system software to $_install_mod/weakea_V200R021C10SPC600.mod. You can run the install-module weakea_V200R021C10SPC600.mod command to install it.
@@ -23,7 +24,7 @@ V200R019C10SPC500到v200R020需要到华为官网下载WEAKEA插件【需要用�
 可以在系统视图直接执行 ssh server publickey rsa
 [JBZHSL-S7706] ssh server publickey rsa
 
-##设备生成的指定秘钥算法配置等类似如下：
+## 设备生成的指定秘钥算法配置等类似如下：
 
 #ssh server cipher aes256_ctr aes128_ctr
 #ssh server hmac sha2_256
@@ -33,7 +34,7 @@ V200R019C10SPC500到v200R020需要到华为官网下载WEAKEA插件【需要用�
 #ssh client key-exchange dh_group_ssh client key-exchange dh_group_exchange_sha1 dh_group14_sha1 dh_group1_sha1
 #ssh server publickey rsa_sha2_512 rsa_sha2_256
 
-##将上述算法全部undo掉
+## 将上述算法全部undo掉
 
 sys
 undo ssh server cipher
@@ -52,32 +53,32 @@ qu
 ##查看当前所有配置
 dis cur
 
-##查看端口/网口状态和配置简要信息
+## 查看端口/网口状态和配置简要信息
 dis int bri
 
-##关闭终端显示调试/日志/告警信息功能
+## 关闭终端显示调试/日志/告警信息功能
 undo terminal monitor
 
-##查看Eth-Trunk接口的状态信息
+## 查看Eth-Trunk接口的状态信息
 dis cur interface Eth-Trunk
 
-##查看STP状态信息
+## 查看STP状态信息
 dis stp br
 
-##查看NTP状态信息
+## 查看NTP状态信息
 dis ntp status
 dis clock
 
-##查看安装信息
+## 查看安装信息
 dis startup
 
-##进入系统视图，并清除console口密码
+## 进入系统视图，并清除console口密码
 sys
 user-interface console 0
 undo authentication-mode
 y
 
-##配置LLDP/NTP/SNMP
+## 配置LLDP/NTP/SNMP
 qu
 lldp enable
 ntp-service ipv6 disable
@@ -98,7 +99,7 @@ snmp-agent sys-info version v2c v3
 snmp-agent protocol source-status all-interface
 undo snmp-agent protocol source-status ipv6 all-interface
 
-##配置VPN实例和STP
+## 配置VPN实例和STP
 ip vpn-instance _mgmt_
 ipv4-family
 qu
@@ -113,7 +114,7 @@ stp enable
 ##添加VLAN 3 7 2828
 vlan batch 3  7 2828
 
-##配置管理口和带外管理和说明
+## 配置管理口和带外管理和说明
 int vlan 3
 description # Switch_MGMT #
 ip address 10.150.65.86 255.255.255.0
@@ -125,43 +126,43 @@ qu
 ip route-static vpn-instance _mgmt_ 0.0.0.0 0.0.0.0 10.144.3.1
 ip route-static 0.0.0.0 0.0.0.0 10.150.65.1
 
-##创建链路聚合端口（其它Trunk接口配置类似，两个交换机的trunk接口相连，可以互通Vlan）
+## 创建链路聚合端口（其它Trunk接口配置类似，两个交换机的trunk接口相连，可以互通Vlan）
 interface Eth-Trunk 27
 description # ShenZhen_CZ_HX_JF_S7706 #
 port link-type trunk
 port trunk allow-pass vlan all
 
-##将端口聚合到Trunk 27 中--（连接核心交换机的端口）
+## 将端口聚合到Trunk 27 中--（连接核心交换机的端口）
 interface Eth-Trunk 27
 trunkport g0/0/27
 trunkport g0/0/28
 
-##配置带外管理端口
+## 配置带外管理端口
 interface g0/0/25
 description # _mgmt_ #
 port link-type access
 port default vlan 2828
 
-##配置业务口
+## 配置业务口
 int range g0/0/1 to g0/0/24
 description # ShenZhen_JG_JCD01_IND #
 port link-type access
 port default vlan 7
 
 
-##修改交换机名称（每个中心名称不一样）
+## 修改交换机名称（每个中心名称不一样）
 [FutureMatrix] sysname ShenZhen_CZ_JR_JXD07_S5735-L
 
 #================================================
 
-##退出，保存
+## 退出，保存
 [FutureMatrix-port-group]qu
 [FutureMatrix]qu
 <FutureMatrix>sa
 The current configuration will be written to flash:/vrpcfg.zip.
 Are you sure to continue?[Y/N]y
 
-##==============配置ssh===========================
+## ==============配置ssh===========================
 1、 首先开启ssh服务
 stelnet server enable
 ssh authentication-type default password
@@ -194,14 +195,14 @@ ssh client first-time enable
 ssh server-source all-interface
 y
 
-#下面这条不需要加，不安装weakea补丁时需要
+# 下面这条不需要加，不安装weakea补丁时需要
 #ssh server-source -i Vlanif3
 
 7、关闭密码策略
 aaa
 undo local-aaa-user password policy administrator
 
-##==============配置ssh完成，保存所有配置===========================
+## ==============配置ssh完成，保存所有配置===========================
 [FutureMatrix-port-group]qu
 [FutureMatrix]qu
 <FutureMatrix>sa
