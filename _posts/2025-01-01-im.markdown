@@ -1,0 +1,21 @@
+---
+layout:     post
+title:      "图片动态"
+subtitle:   " \"Hello World, Hello Blog\""
+date:       2024-12-29 12:00:00
+author:     "Hux"
+header-img: "https://api.1314.cool/bingimg"
+catalog: true
+tags:
+    - Meta
+---
+
+执行命令**reset stack configuration**清除堆叠相关配置。包括：交换机槽位号、堆叠优先级、堆叠保留VLAN、系统MAC切换时间、堆叠口配置、堆叠口速率配置。例如：
+
+<HUAWEI> **system-view**
+[HUAWEI] **reset stack configuration**
+Warning: This operation will clear all stack configurations and may lead to the loss of the slot ID configuration and cause the device to reset immediately. Are you sure you want to continue? [Y/N]:**y** 
+
+执行该命令后会导致原有堆叠系统分裂，设备重启。
+![寒冬]
+![avatar](https://preview.cloud.189.cn/image/imageAction?param=6814ED378FF274B64ADCB935A45B174342AE77DF83A404EAEDA8A2A2D08946628ADCB5C0708B2C785989E0ACFDF1C33D1264F926497B04EBB89EB4B4E6363DDF45EECE281A16F57FB61501376731A3739D47007237D79FD14078FA44C67CCCFC675DCE02F02831E0A74A8A7B322EF7B097D7A476)
