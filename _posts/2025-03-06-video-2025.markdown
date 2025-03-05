@@ -1,0 +1,12 @@
+---
+layout:     post
+title:      "gen-2025"
+subtitle:   " \"Hello World, Hello Blog\""
+date:       2025-03-05 12:00:00
+author:     "gen"
+header-img: "img/post-bg-2015.jpg"
+catalog: true
+tags:
+    - Meta
+---
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=114109144111356&bvid=BV1wY9dYTE1L&cid=28702934314&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"  width="700px" height="472px"> </iframe>
